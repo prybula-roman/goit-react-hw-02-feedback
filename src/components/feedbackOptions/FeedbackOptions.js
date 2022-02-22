@@ -3,51 +3,25 @@ import PropTypes from "prop-types";
 import Statistic from "../statistic/Statistic";
 
 class FeedbackOptions extends React.Component {
-  static defaultProps = {
-    initialValue: 0,
-  };
-  static propTypes = {
-    value: PropTypes.number,
-  };
+  state = {};
 
-  state = {
-    value: this.props.initialValue,
-  };
-
-  handleClickGood = () => {
-    console.log("this.props.initialValue", this.props.initialValue);
-    // new Statistic.test();
-    this.setState((prevState) => {
-      //  console.log("prevState=", prevState);
-      return { value: prevState.value + 1 };
+  onClickGood = (e) => {
+    //  console.log("onClickGood");
+    this.setState((e) => {
+      this.props.options.good++;
     });
   };
+
   render() {
     return (
       <div>
-        <button
-          type="button"
-          onClick={() => {
-            console.log("clicked Good");
-            this.handleClickGood();
-          }}
-        >
-          Good {this.state.value}
+        <button type="button" onClick={this.props.onGood}>
+          Good
         </button>
-        <button
-          type="button"
-          onClick={() => {
-            console.log("clicked Neutral");
-          }}
-        >
+        <button type="button" onClick={this.props.onNeutral}>
           Neutral
         </button>
-        <button
-          type="button"
-          onClick={() => {
-            console.log("clicked Bad");
-          }}
-        >
+        <button type="button" onClick={this.props.onBad}>
           Bad
         </button>
       </div>
